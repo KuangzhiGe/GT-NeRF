@@ -1,4 +1,4 @@
-# GT-NeRF
+# [GT-NeRF](https://github.com/MAMBA4L924/GT-NeRF)
 This is the final project for the course ***Computer Vision*** taught by Prof. Pengshuai Wang at Peking University. In this project, we intend to implement the classic model of [NeRF](http://www.matthewtancik.com/nerf) with positional encoding and fit on multi-view images. Besides, we will also implement the [extension of NeRF which is capable of modeling dynamic scenes](https://www.albertpumarola.com/research/D-NeRF/index.html) utilizing both the straightfoward way of representing the scene by a 6D input of the query 3D location, viewing direction and time $(x, y, z, t, θ, ϕ)$ and the method with two neural network modules $Ψ_t,  Ψ_x$ (proposed by [D-NeRF](https://www.albertpumarola.com/research/D-NeRF/index.html)).  
 
 ## File Structure
