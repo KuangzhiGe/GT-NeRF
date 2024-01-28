@@ -1,6 +1,16 @@
 # GT-NeRF
 This is the final project for the course ***Computer Vision*** taught by Prof. Pengshuai Wang at Peking University. In this project, we intend to implement the classic model of [NeRF](http://www.matthewtancik.com/nerf) with positional encoding and fit on multi-view images. Besides, we will also implement the [extension of NeRF which is capable of modeling dynamic scenes](https://www.albertpumarola.com/research/D-NeRF/index.html) utilizing both the straightfoward way of representing the scene by a 6D input of the query 3D location, viewing direction and time $(x, y, z, t, θ, ϕ)$ and the method with two neural network modules $Ψ_t,  Ψ_x$ (proposed by [D-NeRF](https://www.albertpumarola.com/research/D-NeRF/index.html)).  
 
+## File Structure
+```
+├── logs                    # save checkpoints and pre-trained weights
+├── data                    # data for training and testing
+├── configs                 # parameters for training and testing, for adjusting different models
+├── requirements.txt        # environment required to run the code
+├── run.py                  # code
+├── ...
+```
+
 ## Installation
 ```
 git clone https://github.com/MAMBA4L924/GT-NeRF.git
@@ -14,26 +24,44 @@ cd ..
 ```
 ├── logs 
 │   ├── NeRF
-|   |   ├── lego_NeRF
-|   |   ├── ficus
+|   |   ├── Lego
+|   |   ├── Fern
+|   |   ├── ...
 |   ├── D-NeRF
 │   |   ├── standup 
 │   |   ├── mutant
-|   |   ├── lego_N
+|   |   ├── lego
 ```
 
 ## Download Dataset[1][2]
  You can download the datasets from [drive](https://drive.google.com/drive/folders/1Zy0wkFIy7EApZiJEEVjQVLYYLk9_R2EL?usp=sharing). Unzip the downloaded data to the project root dir in order to train. See the following directory structure for an example:
 ```
-├── logs 
+├── data 
 │   ├── NeRF
-|   |   ├── lego_N
-|   |   ├── ficus
+|   |   ├── Lego
+|   |   ├── Fern
+|   |   ├── ...
 |   ├── D-NeRF
 │   |   ├── standup 
 │   |   ├── mutant
-|   |   ├── lego_N
+|   |   ├── lego
+|   |   ├── ...
 ```
+## Configs
+These .txt files are the basic parameters for training, loading data and rendering. You can adjust by yourself to change model.
+```
+├── configs
+│   ├── NeRF
+|   |   ├── Lego.txt
+|   |   ├── Fern.txt
+|   |   ├── ...
+|   ├── D-NeRF
+│   |   ├── standup.txt 
+│   |   ├── mutant.txt
+|   |   ├── lego.txt
+|   |   ├── ...
+```
+
 
 ## Demo[1]
 We provide simple jupyter notebooks to explore the model. To use them first download the pre-trained weights and dataset.
@@ -47,23 +75,27 @@ We provide simple jupyter notebooks to explore the model. To use them first down
 ## Test
 First download pre-trained weights and dataset. Then, 
 ```
-python run.py --config configs/mutant.txt --render_only --render_test
+python run.py --config configs/D-NeRF/mutant.txt --render_only --render_test
 ```
-This command will run the `mutant` experiment. When finished, results are saved to `./logs/mutant/renderonly_test_799999` To quantitatively evaluate model run `metrics.ipynb` notebook
+This command will run the `mutant` experiment. When finished, results are saved to `./D-NeRF/logs/mutant/renderonly_test_799999` To quantitatively evaluate model run `metrics.ipynb` notebook
 
 ## Train
 First download the dataset. Then,  
 1. For NeRF:
 ```
-python run.py --config configs/lego_N.txt
-```
-or
-```
-python run.py --config configs/ficus.txt
+python run.py --config configs/NeRF/Lego.txt
 ```
 2. For D-NeRF:
 ```
-python run.py --config configs/mutant.txt
+python run.py --config configs/D-NeRF/mutant.txt
+```
+3. For T-NeRF:
+```
+python run.py --config configs/D-NeRF/mutant.txt --is_straightforward True
+```
+4. For GT-NeRF:
+```
+python run.py --config configs/D-NeRF/mutant.txt --is_ViT True
 ```
 ## Citations
 [1] @article{pumarola2020d,
