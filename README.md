@@ -97,6 +97,18 @@ python run.py --config configs/D-NeRF/mutant.txt --is_straightforward True
 ```
 python run.py --config configs/D-NeRF/mutant.txt --is_ViT True
 ```
+
+## Segregation of Duties
+This project is all done by me[@Kuangzhi Ge](https://github.com/MAMBA4L924) and [@Yiyang Tian](https://github.com/Jappwhagg).
+Yiyang is mainly resiponsible for: 
+  1) the implementation of positional encoding 
+  2) the implementation of NeRF model
+  3) LLFF NeRF:PM_Model
+I am responsible for:
+  1) the implementation of D-NeRF, T-NeRF
+  2) propose GT-NeRF
+And we are the co-authors of the final report for the final project.
+
 ## Citations
 [1] @article{pumarola2020d,
   title={D-NeRF: Neural Radiance Fields for Dynamic Scenes},
